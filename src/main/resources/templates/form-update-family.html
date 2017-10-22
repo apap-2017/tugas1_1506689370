@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Update Family</title>
+<link rel = "stylesheet" href ="/css/bootstrap.min.css"></link>
+<style>body{padding:0vw 0.5vw 0 0.5vw}.navbar{border-radius:0 0 5px 5px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)}</style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<div th:replace = "fragments/fragment :: header" ></div> 
+	<div th:if="${success}">
+		<h2>Data berhasil diubah</h2>
+		<h3 th:text="'Keluarga dengan NKK '+${oldNkk}+' berhasil diupdate'"></h3>
+	</div>
+	<h1 class="page-header">Update</h1>
+	
+	<form action="/updateKeluarga" method="post">
+		<input type="hidden" name="oldNkk" th:value="${nkk}"></input>
+		<div>
+			<label for="alamat">Alamat</label> <input type="text" name="alamat" th:value="${family.alamat}"/>
+		</div>
+		<div>
+			<label for="rt">RT</label> <input type="text" name="rt" th:value="${family.rt}"/>
+		</div>
+		<div>
+			<label for="rw">RW</label> <input type="text" name="rw" th:value="${family.rw}"/>
+		</div>
+		<div>
+			<label for="kota">Kota</label> 
+			<select id="kota" name ="kota">
+				<option th:each="option,iterationStatus: ${listKota}" th:attr="value=${option.kode}" th:text="${option.nama}" th:selected="${option.kode}==${kota}"></option>
+			</select>
+		</div>
+		<div>
+			<label for="kecamatan">Kecamatan</label> 
+			<select id="kecamatan" name ="kecamatan">
+				<option th:each="option,iterationStatus: ${listKecamatan}" th:attr="value=${option.kode}" th:text="${option.nama}" th:selected="${option.kode}==${kecamatan}"></option>
+			</select>
+		</div>
+		<div>
+			<label for="kelurahan">Kelurahan</label> 
+			<select id="kelurahan" name ="kelurahan">
+				<option th:each="option,iterationStatus: ${listKelurahan}" th:attr="value=${option.kode}" th:text="${option.nama}" th:selected="${option.kode}==${kelurahan}"></option>
+			</select>
+		</div>
+		<div>
+			<button type="submit" name="action" value="save">Save</button>
+		</div>
+	</form>
+<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/script2.js">></script>
+</body>
+
+</html>
+

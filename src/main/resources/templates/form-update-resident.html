@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Update Resident</title>
+<link rel = "stylesheet" href ="/css/bootstrap.min.css"></link>
+<style>body{padding:0vw 0.5vw 0 0.5vw}.navbar{border-radius:0 0 5px 5px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)}</style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<div th:replace = "fragments/fragment :: header" ></div> 
+	<div th:if="${success}">
+		<h2>Data berhasil diubah</h2>
+		<h3 th:text="'Penduduk dengan NIK '+${oldNik}+' berhasil diupdate'"></h3>
+	</div>
+	<h1 class="page-header">Update</h1>
+	
+	<form action="/updatePenduduk" method="post">
+		<input type="hidden" name="oldNik" th:value="${nik}"></input>
+		<div>
+			<label for="nama">Nama</label> <input type="text" name="nama" th:value="${resident.nama}"/>
+		</div>
+		<div>
+			<label for="tempatLahir">Tempat Lahir</label> 
+			<select name ="tempatLahir">
+				<option th:each="option,iterationStatus: ${locationList}" th:attr="value=${option.kodeKecamatan} + '-' + ${option.Kecamatan}" th:text="${option.kecamatan}"  th:selected="${option.kecamatan}==${resident.tempatLahir}"></option>
+			</select>
+		</div>
+		<div>
+			<label for="tanggalLahir">Tanggal Lahir</label> <input type="date" name="tanggalLahir" th:value="${resident.tanggalLahir}"/>
+		</div>
+		<div>
+			<label for="jenisKelamin">Jenis Kelamin</label>
+			<input type="radio" name="jenisKelamin" value="true" th:checked="${resident.jenisKelamin} == true"> Perempuan </input>
+  			<input type="radio" name="jenisKelamin" value="false" th:checked="${resident.jenisKelamin} == false"> Laki-laki </input>
+		</div>
+		<div>
+			<label for="wni">Kewarganegaraan</label> 
+			<input type="radio" name="wni" value="true" th:checked="${resident.wni} == true">WNI</input>
+  			<input type="radio" name="wni" value="false" th:checked="${resident.wni} == false">WNA</input>
+		</div>
+		<div>
+			<label for="idKeluarga">Keluarga</label> <input type="text" name="idKeluarga" th:value="${resident.idKeluarga}"/>
+		</div>
+		<div>
+			<label for="agama">Agama</label> <input type="text" name="agama" th:value="${resident.agama}"/>
+		</div>
+		<div>
+			<label for="pekerjaan">Pekerjaan</label> <input type="text" name="pekerjaan" th:value="${resident.pekerjaan}"/>
+		</div>
+		<div>
+			<label for="statusPerkawinan">Status Perkawinan</label> <input type="text" name="statusPerkawinan" th:value="${resident.statusPerkawinan}"/>
+		</div>
+		<div>
+			<label for="statusDalamKeluarga">Status Dalam Keluarga</label> <input type="text" name="statusDalamKeluarga" th:value="${resident.statusDalamKeluarga}"/>
+		</div>
+		<div>
+			<label for="golonganDarah">Golongan Darah</label> <input type="text" name="golonganDarah" th:value="${resident.golonganDarah}"/>
+		</div>
+		<div>
+			<label for="wafat">Status</label> 
+			<input type="radio" name="wafat" value="true" th:checked="${resident.wafat} == true">Meninggal</input>
+  			<input type="radio" name="wafat" value="false" th:checked="${resident.wafat} == false">Hidup</input>
+		</div>
+		<div>
+			<button type="submit" name="action" value="save">Save</button>
+		</div>
+	</form>
+<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+

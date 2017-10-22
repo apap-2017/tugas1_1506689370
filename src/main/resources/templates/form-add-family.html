@@ -1,0 +1,56 @@
+ <!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Add student</title>
+<link rel = "stylesheet" href ="/css/bootstrap.min.css"></link>
+<style>body{padding:0vw 0.5vw 0 0.5vw}.navbar{border-radius:0 0 5px 5px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)}</style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<div th:replace = "fragments/fragment :: header" ></div> 
+	<div th:if="${success}">
+		<h2>Data berhasil ditambahkan</h2>
+		<h3 th:text="'Keluarga dengan NKK '+${nkk}+' berhasil ditambahkan'"></h3>
+	</div>
+	<h1 class="page-header">Add</h1>
+	
+	<form action="/keluarga/tambah" method="post">
+		<div class="form-group col-sm-4">
+			<label for="alamat">Alamat</label> <input type="text" class="form-control" name="alamat"  required="true"/>
+		</div>
+		<div class="form-group col-sm-4">
+			<label for="rt">RT</label> <input type="text" class="form-control" name="rt"  required="true"/>
+		</div>
+		<div class="form-group col-sm-4">
+			<label for="rw">RW</label> <input type="text" class="form-control" name="rw"  required="true"/>
+		</div>
+		<div class="form-group col-sm-4">
+			<label for="kota">Kota</label> 
+			<select class="form-control" id="kota" name ="kota" >
+				<option th:each="option,iterationStatus: ${kota}" th:attr="value=${option.kode}" th:text="${option.nama}"></option>
+			</select>
+		</div>
+		<div class="form-group col-sm-4">
+			<label for="kecamatan">Kecamatan</label> 
+			<select class="form-control" id="kecamatan" name ="kecamatan"  required="true">
+			</select>
+		</div>
+		<div class="form-group col-sm-4">
+			<label for="kelurahan">Kelurahan</label> 
+			<select class="form-control" id="kelurahan" name ="kelurahan"  required="true">
+			</select>
+		</div >
+		<div>
+			<button type="submit" class="btn btn-default" name="action" value="save">Save</button>
+		</div>
+	</form>
+<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/script.js">></script>
+</body>
+
+</html>
+

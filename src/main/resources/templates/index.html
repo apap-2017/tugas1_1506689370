@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html xmlns:th = "http://www.thymeleaf.org"> 
+<head>
+	<title> Index </title> 
+	<link rel = "stylesheet" href ="/css/bootstrap.min.css"></link>
+	<style>body{padding:0vw 0.5vw 0 0.5vw}.navbar{border-radius:0 0 5px 5px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)}</style>
+</head> 
+<body>
+<div th:replace = "fragments/fragment :: header" ></div> 
+	<form action="/penduduk" method="get">
+		<div class="form-group col-sm-4">
+			<label for="nik">NIK</label> <input type="text" class="form-control" name="nik" required="true"/>
+		</div>
+		<div class="form-group col-sm-4">
+			<button type="submit" class="btn btn-default">View</button>
+		</div>
+	</form>
+	
+	<form action="/keluarga" method="get">
+		<div class="form-group col-sm-4">
+			<label for="nkk">NKK</label> <input class="form-control" type="text" name="nkk" required="true"/>
+		</div>
+		<div class="form-group col-sm-4">
+			<button type="submit" class="btn btn-default" >View</button>
+		</div>
+	</form>
+<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+</body> 
+</html>

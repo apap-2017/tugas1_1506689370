@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Add Resident</title>
+<link rel = "stylesheet" href ="/css/bootstrap.min.css"></link>
+<style>body{padding:0vw 0.5vw 0 0.5vw}.navbar{border-radius:0 0 5px 5px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)}</style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<div th:replace = "fragments/fragment :: header" ></div> 
+	<div th:if="${success}">
+		<h2>Data berhasil ditambahkan</h2>
+		<h3 th:text="'Penduduk dengan NIK '+${nik}+' berhasil ditambahkan'"></h3>
+	</div>
+	<h1 class="page-header">Add</h1>
+	
+	<form action="/penduduk/tambah" method="post">
+		<div class="form-group col-sm-4">
+			<label for="nama">Nama</label> <input type="text" name="nama" class="form-control" required="true"/>
+		</div>
+		<div class="form-group col-sm-4">
+			<label for="tempatLahir">Tempat Lahir</label> 
+			<select name ="tempatLahir" class="form-control" required="true">
+				<option th:each="option,iterationStatus: ${locationList}" th:attr="value=${option.kodeKecamatan} + '-' + ${option.Kecamatan}" th:text="${option.kecamatan}"></option>
+			</select>
+		</div>
+		<div class="form-group col-sm-4">
+			<label for="tanggalLahir">Tanggal Lahir</label> <input type="date"  required="true" name="tanggalLahir" class="form-control" />
+		</div>
+		<div class="form-group col-sm-4">
+			<label for="jenisKelamin">Jenis Kelamin</label>
+			<input type="radio" name="jenisKelamin" value="true" th:text="Perempuan"></input>
+			<input type="radio" name="jenisKelamin" value="false" th:text="Laki-laki"></input>
+		</div>
+		<div class="form-group col-sm-4">
+			<label for="wni">Kewarganegaraan</label> 
+			<input type="radio" name="wni" value="true">WNI</input>
+  			<input type="radio" name="wni" value="false">WNA</input>
+		</div>
+		<div class="form-group col-sm-4">
+			<label for="idKeluarga">Keluarga</label> <input  required="true" type="text" name="idKeluarga" />
+		</div>
+		<div class="form-group col-sm-4">
+			<label for="agama">Agama</label> <input  required="true" type="text" name="agama" />
+		</div>
+		<div class="form-group col-sm-4">
+			<label for="pekerjaan">Pekerjaan</label> <input  required="true" type="text" name="pekerjaan" />
+		</div>
+		<div class="form-group col-sm-4">
+			<label for="statusPerkawinan">Status Perkawinan</label> <input  required="true" type="text" name="statusPerkawinan" />
+		</div>
+		<div class="form-group col-sm-4">
+			<label for="statusDalamKeluarga">Status Dalam Keluarga</label> <input  required="true" type="text" name="statusDalamKeluarga" />
+		</div>
+		<div class="form-group col-sm-4">
+			<label for="golonganDarah">Golongan Darah</label> <input  required="true" type="text" name="golonganDarah" />
+		</div>
+		<div class="form-group col-sm-4">
+			<label for="wafat">Status</label> 
+			<input type="radio" name="wafat" value="true">Meninggal</input>
+  			<input type="radio" name="wafat" value="false">Hidup</input>
+		</div>
+		<div>
+			<button type="submit" class="btn btn-default" name="action" value="save">Save</button>
+		</div>
+	</form>
+<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+

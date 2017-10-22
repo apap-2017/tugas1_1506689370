@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>View Resident by NIK</title>
+	<link rel = "stylesheet" href ="/css/bootstrap.min.css"></link>
+	<style>body{padding:0vw 0.5vw 0 0.5vw}.navbar{border-radius:0 0 5px 5px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)}</style>
+</head>
+<body>
+	<div th:replace = "fragments/fragment :: header" ></div> 
+	<div th:if="${success}">
+		<h2>Data berhasil diubah</h2>
+		<h3 th:text="'Penduduk dengan NIK '+${nik}+' sudah tidak aktif'"></h3>
+	</div>
+	<h3 th:text="'NIK = ' + ${resident.nik}"></h3>
+	<h3 th:text="'Nama = ' + ${resident.nama}"></h3>
+	<h3 th:text="'Tempat/Tanggal Lahir = ' + ${resident.tempatLahir} + ', ' + ${resident.tanggalLahir}"></h3>
+	<h3 th:text="${resident.jenisKelamin}?'Jenis Kelamin = Perempuan':'Jenis Kelamin = Laki-laki'"></h3>
+	<h3 th:text="'Alamat = ' + ${family.alamat}"></h3>
+	<h3 th:text="'Tempat/Tanggal Lahir = ' + ${family.rt} + '/' + ${family.rw}"></h3>
+	<h3 th:text="'Kelurahan/Desa = ' + ${address.kelurahan}"></h3>
+	<h3 th:text="'Kecamatan = ' + ${address.kecamatan}"></h3>
+	<h3 th:text="'Kota = ' + ${address.kota}"></h3>
+	<h3 th:text="'Golongan Darah = ' + ${resident.golonganDarah}"></h3>
+	<h3 th:text="'Agama = ' + ${resident.agama}"></h3>
+	<h3 th:text="'Status Perkawinan = ' + ${resident.statusPerkawinan}"></h3>
+	<h3 th:text="'Pekerjaan = ' + ${resident.pekerjaan}"></h3>
+	<h3 th:text="${resident.wni}?'Kewarganegaraan = WNI':'Kewarganegaraan = WNA'"></h3> 
+	<h3 th:text="${resident.wafat}?'Status Kematian = Meninggal':'Status Kematian = Hidup'"></h3>
+	<form action="/penduduk/mati" method="post">
+		<input type="hidden" name="nik" th:value="${resident.nik}"></input>
+		<div>
+			<button type="submit" name="action" value="save">Ubah status kematian</button>
+		</div>
+	</form>
+	<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+</body>
+</html>

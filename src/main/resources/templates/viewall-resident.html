@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>View All Residents</title>
+	<link rel="stylesheet" href="/css/datatables.min.css"/>
+	<link rel = "stylesheet" href ="/css/bootstrap.min.css"></link>
+	<style>body{padding:0vw 0.5vw 0 0.5vw}.navbar{border-radius:0 0 5px 5px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)}</style>
+</head>
+<body>
+	<div th:replace = "fragments/fragment :: header" ></div> 
+	<h1>All Residents</h1>
+	<table id="table" class="display">
+		<thead>
+			<tr>
+				<th>No.</th>
+				<th>NIK</th>
+				<th>Nama</th>
+				<th>Tempat Lahir</th>
+				<th>Tanggal Lahir</th>
+				<th>Jenis Kelamin</th>
+				<th>Golongan Darah </th>
+				<th>Agama</th>
+				<th>Status Perkawinan</th>
+				<th>Pekerjaan</th>
+				<th>Kewarganegaraan</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="resident,iterationStatus: ${residents}">
+				<td th:text="${iterationStatus.count}"></td>
+				<td th:text="${resident.nik}"></td>
+				<td th:text="${resident.nama}"></td>
+				<td th:text="${resident.tempatLahir}"></td>
+				<td th:text="${resident.tanggalLahir}"></td>
+				<td th:text="${resident.jenisKelamin}?'Perempuan':'Laki-laki'"></td>
+				<td th:text="${resident.golonganDarah}"></td>
+				<td th:text="${resident.agama}"></td>
+				<td th:text="${resident.statusPerkawinan}"></td>
+				<td th:text="${resident.pekerjaan}"></td>
+				<td th:text="${resident.wni}?'WNI':'WNA'"></td> 
+				<td th:text="${resident.wafat}?'Meninggal':'Hidup'"></td>
+			</tr>
+		</tbody>
+	</table>
+	<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/js/datatables.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#table').DataTable();
+		});
+	</script>
+</body>
+</html>
